@@ -62,5 +62,13 @@ public class MonitorStopConf extends Header {
             throw new Exception("Buffer overflowed during Monitor_Stop_Conf serialization!");
         }
     }
-}
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("MonitorStopConf{");
+        sb.append(super.toString());
+        sb.append("invokeId=").append(invokeId);
+        sb.append('}');
+        return sb.toString();
+    }
 }
