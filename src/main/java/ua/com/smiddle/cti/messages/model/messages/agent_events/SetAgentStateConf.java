@@ -25,9 +25,9 @@ public class SetAgentStateConf extends Header {
     //Methods
     public byte[] serializeMessage() throws Exception {
         try {
-            this.setMessageLength(MHDR + FIXED_PART);
-            this.setMessageType(CTI.MSG_SET_AGENT_STATE_CONF);
-            ByteBuffer buffer = ByteBuffer.allocate(getMessageLength()).putInt(getMessageLength())
+            setMessageLength(FIXED_PART);
+            setMessageType(CTI.MSG_SET_AGENT_STATE_CONF);
+            ByteBuffer buffer = ByteBuffer.allocate(MHDR + this.getMessageLength()).putInt(getMessageLength())
                     .putInt(getMessageType())
                     .putInt(getInvokeID());
             return buffer.array();
@@ -39,8 +39,8 @@ public class SetAgentStateConf extends Header {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("SetAgentStateConf{");
-        sb.append(super.toString()).append(",");
-        sb.append("invokeID=").append(invokeID);
+        sb.append(super.toString());
+        sb.append(", invokeID=").append(invokeID);
         sb.append('}');
         return sb.toString();
     }

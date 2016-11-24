@@ -15,7 +15,7 @@ public class SetAgentStateReq extends Header {
     List<FloatingField> floatingFields = new ArrayList();
     private int invokeID;
     private int pheriperalID;
-    private String agentState;
+    private AgentStates agentState;
     private short agentWorkMode;
     private short numSkillsGroups;
     private short eventReasonCode;
@@ -40,7 +40,8 @@ public class SetAgentStateReq extends Header {
         message.setMessageLength(buffer.getInt());
         message.setMessageType(buffer.getInt());
         message.setInvokeID(buffer.getInt());
-        message.setAgentState(AgentStates.getState(Short.toUnsignedInt(buffer.getShort())).name());
+        message.setPheriperalID(buffer.getInt());
+        message.setAgentState(AgentStates.getState(Short.toUnsignedInt(buffer.getShort())));
         message.setAgentWorkMode(buffer.getShort());
         message.setNumSkillsGroups(buffer.getShort());
         message.setEventReasonCode(buffer.getShort());
@@ -74,11 +75,11 @@ public class SetAgentStateReq extends Header {
         this.pheriperalID = pheriperalID;
     }
 
-    public String getAgentState() {
+    public AgentStates getAgentState() {
         return agentState;
     }
 
-    public void setAgentState(String agentState) {
+    public void setAgentState(AgentStates agentState) {
         this.agentState = agentState;
     }
 
@@ -134,8 +135,8 @@ public class SetAgentStateReq extends Header {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("SetAgentStateReq{");
-        sb.append(super.toString()).append(",");
-        sb.append("invokeID=").append(invokeID);
+        sb.append(super.toString());
+        sb.append(", invokeID=").append(invokeID);
         sb.append(", pheriperalID=").append(pheriperalID);
         sb.append(", agentState='").append(agentState).append('\'');
         sb.append(", agentWorkMode=").append(agentWorkMode);

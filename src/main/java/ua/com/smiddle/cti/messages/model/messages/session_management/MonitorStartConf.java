@@ -78,7 +78,7 @@ public class MonitorStartConf extends Header {
     public String toString() {
         final StringBuilder sb = new StringBuilder("MonitorStartConf{");
         sb.append(super.toString());
-        sb.append("invokeId=").append(invokeId);
+        sb.append(", invokeId=").append(invokeId);
         sb.append(", monitorId=").append(monitorId);
         sb.append('}');
         return sb.toString();

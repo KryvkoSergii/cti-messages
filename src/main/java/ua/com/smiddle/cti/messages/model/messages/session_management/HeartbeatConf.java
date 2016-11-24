@@ -48,7 +48,7 @@ public class HeartbeatConf extends Header {
     //Methods
     public byte[] serializeMessage() throws CTIException {
         try {
-            return ByteBuffer.allocate(Header.MHDR + FIXED_PART).putInt(getMessageLength()).putInt(getMessageType()).putInt(invokeId).array();
+            return ByteBuffer.allocate(MHDR + FIXED_PART).putInt(getMessageLength()).putInt(getMessageType()).putInt(invokeId).array();
         } catch (BufferOverflowException e) {
             throw new CTIMessageException("Buffer overflowed during HEART_BEAT_CONF serialization!");
         }
@@ -57,10 +57,9 @@ public class HeartbeatConf extends Header {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();
-        sb.append("Header{messageLength=").append(getMessageLength());
-        sb.append(", messageType=").append(getMessageType());
-        sb.append('}');
-        sb.append(" HeartbeatConf{invokeId=").append(invokeId);
+        sb.append("HeartbeatConf{");
+        sb.append(super.toString());
+        sb.append(", invokeId=").append(invokeId);
         sb.append('}');
         return sb.toString();
     }

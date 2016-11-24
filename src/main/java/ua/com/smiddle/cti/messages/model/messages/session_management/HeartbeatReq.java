@@ -28,17 +28,6 @@ public class HeartbeatReq extends Header {
         this.invokeId = invokeId;
     }
 
-
-    //Getters & setters
-    public int getInvokeId() {
-        return invokeId;
-    }
-
-    public void setInvokeId(int invokeId) {
-        this.invokeId = invokeId;
-    }
-
-
     //static methods
     public static HeartbeatReq deserializeMessage(byte[] bytes) {
         ByteBuffer buffer = ByteBuffer.wrap(bytes);
@@ -49,6 +38,14 @@ public class HeartbeatReq extends Header {
         return message;
     }
 
+    //Getters & setters
+    public int getInvokeId() {
+        return invokeId;
+    }
+
+    public void setInvokeId(int invokeId) {
+        this.invokeId = invokeId;
+    }
 
     //Methods
     public byte[] serializeMessage() throws CTIException {
@@ -62,10 +59,9 @@ public class HeartbeatReq extends Header {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();
-        sb.append("Header{messageLength=").append(getMessageLength());
-        sb.append(", messageType=").append(getMessageType());
-        sb.append('}');
-        sb.append(" HeartbeatReq{invokeId=").append(invokeId);
+        sb.append("HeartbeatReq{");
+        sb.append(super.toString());
+        sb.append(", invokeId=").append(invokeId);
         sb.append('}');
         return sb.toString();
     }

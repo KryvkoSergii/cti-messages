@@ -11,21 +11,40 @@ import java.util.Arrays;
 import java.util.List;
 
 public class QueryAgentStateReq extends Header {
+    public final static int NULL_PERIPHERAL_ID = 0xFFFFFFFF;
     private final static int FIXED_PART = 16;
     private final static int MAX_LENGTH = 122;
-    public final static int NULL_PERIPHERAL_ID = 0xFFFFFFFF;
-
+    List<FloatingField> floatingFields = new ArrayList<>(1);
     private int invokeId;
     private int peripheralId;
     private int mrdid;              //Media Routing Domain ID
     private int agentIdICMA;
-    List<FloatingField> floatingFields = new ArrayList<>(1);
 
 
     //Constructors
     public QueryAgentStateReq() {
     }
 
+
+    //static methods
+    public static QueryAgentStateReq deserializeMessage(byte[] bytes) {
+        ByteBuffer buffer = ByteBuffer.wrap(bytes);
+        QueryAgentStateReq message = new QueryAgentStateReq();
+        message.setMessageLength(buffer.getInt());
+        message.setMessageType(buffer.getInt());
+        message.setInvokeId(buffer.getInt());
+        message.setPeripheralId(buffer.getInt());
+        message.setMrdid(buffer.getInt());
+        message.setAgentIdICMA(buffer.getInt());
+        while (true) {
+            try {
+                message.getFloatingFields().add(FloatingField.deserializeField(buffer));
+            } catch (BufferUnderflowException e) {
+                break;
+            }
+        }
+        return message;
+    }
 
     //Getters & setters
     public int getInvokeId() {
@@ -68,7 +87,6 @@ public class QueryAgentStateReq extends Header {
         this.floatingFields = floatingFields;
     }
 
-
     //Methods
     public byte[] serializeMessage() throws Exception {
         try {
@@ -86,31 +104,11 @@ public class QueryAgentStateReq extends Header {
         }
     }
 
-    //static methods
-    public static QueryAgentStateReq deserializeMessage(byte[] bytes) {
-        ByteBuffer buffer = ByteBuffer.wrap(bytes);
-        QueryAgentStateReq message = new QueryAgentStateReq();
-        message.setMessageLength(buffer.getInt());
-        message.setMessageType(buffer.getInt());
-        message.setInvokeId(buffer.getInt());
-        message.setPeripheralId(buffer.getInt());
-        message.setMrdid(buffer.getInt());
-        message.setAgentIdICMA(buffer.getInt());
-        while (true) {
-            try {
-                message.getFloatingFields().add(FloatingField.deserializeField(buffer));
-            } catch (BufferUnderflowException e) {
-                break;
-            }
-        }
-        return message;
-    }
-
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("QueryAgentStateReq{");
-        sb.append(super.toString()).append(",");
-        sb.append("invokeId=").append(invokeId);
+        sb.append(super.toString());
+        sb.append(", invokeId=").append(invokeId);
         sb.append(", peripheralId=").append(peripheralId);
         sb.append(", mrdid=").append(mrdid);
         sb.append(", agentIdICMA=").append(agentIdICMA);

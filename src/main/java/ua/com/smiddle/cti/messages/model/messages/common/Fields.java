@@ -185,6 +185,21 @@ public enum Fields {
             return DATA_TYPE_SHORT;
         }
     },
+    TAG_MONITORED_DEVID_TAG {
+        private final static int TAG_ID = 76;
+
+        public int getTagId() {
+            return TAG_ID;
+        }
+
+        public int getMaxLength() {
+            return STRING_64;
+        }
+
+        public String getDataType() {
+            return DATA_TYPE_STRING;
+        }
+    },
     TAG_APP_PATH_ID {
         private final static int TAG_ID = 97;
 

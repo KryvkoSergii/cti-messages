@@ -139,11 +139,11 @@ public class OpenConf extends Header {
     //Methods
     public byte[] serializeMessage() throws Exception {
         try {
-            this.setMessageLength(MHDR + FIXED_PART + FloatingField.calculateFloatingPart(floatingFields));
+            this.setMessageLength(FIXED_PART + FloatingField.calculateFloatingPart(floatingFields));
             if (getMessageLength() > MAX_LENGTH)
                 throw new Exception("MSG_OPEN_REQ is longer than (bytes) " + MAX_LENGTH);
-            ByteBuffer buffer = ByteBuffer.allocate(this.getMessageLength())
-                    .putInt(getMessageLength() - MHDR)
+            ByteBuffer buffer = ByteBuffer.allocate(MHDR + FIXED_PART + FloatingField.calculateFloatingPart(floatingFields))
+                    .putInt(getMessageLength())
                     .putInt(getMessageType())
                     .putInt(invokeId)
                     .putInt(servicesGranted)

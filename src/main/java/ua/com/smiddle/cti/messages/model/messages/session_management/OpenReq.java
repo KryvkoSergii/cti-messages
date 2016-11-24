@@ -166,10 +166,10 @@ public class OpenReq extends Header {
     //Methods
     public byte[] serializeMessage() throws Exception {
         try {
-            this.setMessageLength(FIXED_PART + FloatingField.calculateFloatingPart(floatingFields));
+            setMessageLength(FIXED_PART + FloatingField.calculateFloatingPart(floatingFields));
             if (getMessageLength() > MAX_LENGTH)
                 throw new Exception("MSG_OPEN_REQ is longer than (bytes) " + MAX_LENGTH);
-            ByteBuffer buffer = ByteBuffer.allocate(Header.MHDR + this.getMessageLength()).putInt(getMessageLength()).putInt(getMessageType()).putInt(invokeId)
+            ByteBuffer buffer = ByteBuffer.allocate(Header.MHDR + getMessageLength()).putInt(getMessageLength()).putInt(getMessageType()).putInt(invokeId)
                     .putInt(versionNumber).putInt(idleTimeout).putInt(peripheralId).putInt(servicesMask).putInt(callMsgMask)
                     .putInt(agentStateMask).putInt(configMsgMask).putInt(reserved1).putInt(reserved2).putInt(reserved3);
             for (FloatingField field : floatingFields) {
@@ -184,10 +184,8 @@ public class OpenReq extends Header {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();
-        sb.append("Header{messageLength=").append(getMessageLength());
-        sb.append(", messageType=").append(getMessageType());
-        sb.append('}');
-        sb.append(" OpenReq{invokeId=").append(invokeId);
+        sb.append(" OpenReq{").append(super.toString());
+        sb.append(", invokeId=").append(invokeId);
         sb.append(", versionNumber=").append(versionNumber);
         sb.append(", idleTimeout=").append(idleTimeout);
         sb.append(", peripheralId=").append(peripheralId);

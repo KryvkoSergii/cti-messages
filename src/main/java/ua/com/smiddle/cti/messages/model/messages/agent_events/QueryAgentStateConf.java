@@ -30,9 +30,11 @@ public class QueryAgentStateConf extends Header {
     private int agentAvailabilityStatus;    //NOT AVAILABLE = 0, ICM AVAILABLE = 1, APPLICATION AVAILABLE=2
     private List<FloatingField> floatingFields = new ArrayList<>(7);
 
+
     //Constructors
     public QueryAgentStateConf() {
     }
+
 
     //Methods
     public static QueryAgentStateConf deserializeMessage(byte[] bytes) throws UnsupportedEncodingException {
@@ -65,10 +67,10 @@ public class QueryAgentStateConf extends Header {
 
     public byte[] serializeMessage() throws Exception {
         try {
-            this.setMessageLength(MHDR + FIXED_PART + FloatingField.calculateFloatingPart(floatingFields));
+            this.setMessageLength(FIXED_PART + FloatingField.calculateFloatingPart(floatingFields));
             this.setMessageType(CTI.MSG_QUERY_AGENT_STATE_CONF);
-            ByteBuffer buffer = ByteBuffer.allocate(MHDR + FIXED_PART + FloatingField.calculateFloatingPart(floatingFields))
-                    .putInt(this.getMessageLength() - MHDR)
+            ByteBuffer buffer = ByteBuffer.allocate(MHDR + this.getMessageLength())
+                    .putInt(this.getMessageLength())
                     .putInt(this.getMessageType())
                     .putInt(invokeId)
                     .putShort((short) AgentStates.setIntState(agentState))

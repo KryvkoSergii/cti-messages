@@ -52,7 +52,7 @@ public class MonitorStopConf extends Header {
     public byte[] serializeMessage() throws Exception {
         try {
             setMessageLength(FIXED_PART);
-            setMessageType(CTI.MSG_MONITOR_START_CONF);
+            setMessageType(CTI.MSG_MONITOR_STOP_CONF);
             ByteBuffer buffer = ByteBuffer.allocate(MHDR + FIXED_PART)
                     .putInt(getMessageLength())
                     .putInt(getMessageType())
@@ -67,7 +67,7 @@ public class MonitorStopConf extends Header {
     public String toString() {
         final StringBuilder sb = new StringBuilder("MonitorStopConf{");
         sb.append(super.toString());
-        sb.append("invokeId=").append(invokeId);
+        sb.append(", invokeId=").append(invokeId);
         sb.append('}');
         return sb.toString();
     }

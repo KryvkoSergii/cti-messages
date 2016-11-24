@@ -152,7 +152,7 @@ public class MonitorStartReq extends Header {
     public String toString() {
         final StringBuilder sb = new StringBuilder("MonitorStartReq{");
         sb.append(super.toString());
-        sb.append(",invokeId=").append(invokeId);
+        sb.append(", invokeId=").append(invokeId);
         sb.append(", peripheralID=").append(peripheralID);
         sb.append(", connectionCallID=").append(connectionCallID);
         sb.append(", callMsgMask=").append(callMsgMask);
