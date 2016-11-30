@@ -177,6 +177,110 @@ public abstract class CTI {
      */
     public final static int MSG_SET_AGENT_STATE_CONF = 39;
     /**
+     * Request to alternate between a held and an active call.
+     */
+    public final static int MSG_ALTERNATE_CALL_REQ = 40;
+    /**
+     * Response confirming a previous ALTERNATE_CALL request.
+     */
+    public final static int MSG_ALTERNATE_CALL_CONF = 41;
+    /**
+     * Request to answer an alerting call.
+     */
+    public final static int MSG_ANSWER_CALL_REQ = 42;
+    /**
+     * Response confirming a previous ANSWER_CALL request.
+     */
+    public final static int MSG_ANSWER_CALL_CONF = 43;
+    /**
+     * Request to release all devices from a call.
+     */
+    public final static int MSG_CLEAR_CALL_REQ = 44;
+    /**
+     * Response confirming a previous CLEAR_CALL request.
+     */
+    public final static int MSG_CLEAR_CALL_CONF = 45;
+    /**
+     * Request to release a single device from a call.
+     */
+    public final static int MSG_CLEAR_CONNECTION_REQ = 46;
+    /**
+     * Response confirming a previous CLEAR_CONNECTION request.
+     */
+    public final static int MSG_CLEAR_CONNECTION_CONF = 47;
+    /**
+     * Request to conference a held call with an active call.
+     */
+    public final static int MSG_CONFERENCE_CALL_REQ = 48;
+    /**
+     * Response confirming a previous CONFERENCE_CALL request.
+     */
+    public final static int MSG_CONFERENCE_CALL_CONF = 49;
+    /**
+     * Request to hold an active call and initiate a new call.
+     */
+    public final static int MSG_CONSULTATION_CALL_REQ = 50;
+    /**
+     * Response confirming a previous CONSULTATION_CALL request.
+     */
+    public final static int MSG_CONSULTATION_CALL_CONF = 51;
+    /**
+     * Request to move an alerting call to a different device.
+     */
+    public final static int MSG_DEFLECT_CALL_REQ = 52;
+    /**
+     * Response confirming a previous DEFLECT_CALL request.
+     */
+    public final static int MSG_DEFLECT_CALL_CONF = 53;
+    /**
+     * Request to place a call connection in the held state.
+     */
+    public final static int MSG_HOLD_CALL_REQ = 54;
+    /**
+     * Response confirming a previous HOLD_CALL request.
+     */
+    public final static int MSG_HOLD_CALL_CONF = 55;
+    /**
+     * Request to initiate a new call between two devices.
+     */
+    public final static int MSG_MAKE_CALL_REQ = 56;
+    /**
+     * Response confirming a previous MAKE_CALL request.
+     */
+    public final static int MSG_MAKE_CALL_CONF = 57;
+    /**
+     * Request to initiate a new predictive call.
+     */
+    public final static int MSG_MAKE_PREDICTIVE_CALL_REQ = 58;
+    /**
+     * Response confirming a previous MAKE_PREDICTIVE_CALL request.
+     */
+    public final static int MSG_MAKE_PREDICTIVE_CALL_CONF = 59;
+    /**
+     * Request to clear a connection and retrieve a held call.
+     */
+    public final static int MSG_RECONNECT_CALL_REQ = 60;
+    /**
+     * Response confirming a previous RECONNECT_CALL request.
+     */
+    public final static int MSG_RECONNECT_CALL_CONF = 61;
+    /**
+     * Request to reconnect a held call.
+     */
+    public final static int MSG_RETRIEVE_CALL_REQ = 62;
+    /**
+     * Response confirming a previous RETRIEVE_CALL request.
+     */
+    public final static int MSG_RETRIEVE_CALL_CONF = 63;
+    /**
+     * Request to transfer a held call to an active call.
+     */
+    public final static int MSG_TRANSFER_CALL_REQ = 64;
+    /**
+     * Response confirming a previous TRANSFER_CALL request.
+     */
+    public final static int MSG_TRANSFER_CALL_CONF = 65;
+    /**
      * Request to obtain information about a specified call.
      */
     public final static int MSG_SNAPSHOT_CALL_REQ = 82;

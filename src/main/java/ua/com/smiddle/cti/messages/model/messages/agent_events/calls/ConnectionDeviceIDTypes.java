@@ -1,4 +1,4 @@
-package ua.com.smiddle.cti.messages.model.messages.miscellaneous.calls;
+package ua.com.smiddle.cti.messages.model.messages.agent_events.calls;
 
 /**
  * @author ksa on 30.11.16.
