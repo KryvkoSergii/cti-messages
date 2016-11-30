@@ -1,10 +1,12 @@
 package ua.com.smiddle.cti.messages.model.messages.agent_events.calls;
 
+import java.io.Serializable;
+
 /**
  * @author ksa on 30.11.16.
  * @project cti-messages
  */
-public enum LineTypes {
+public enum LineTypes implements Serializable {
     LINETYPE_INBOUND_ACD {
         private final int value = 0;
         private final String msg = "Line used for inbound ACD calls.";

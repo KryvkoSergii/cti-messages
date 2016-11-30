@@ -1,10 +1,12 @@
 package ua.com.smiddle.cti.messages.model.messages.agent_events.calls;
 
+import java.io.Serializable;
+
 /**
  * @author ksa on 30.11.16.
  * @project cti-messages
  */
-public enum EventCause {
+public enum EventCause implements Serializable {
     CEC_NONE {
         private final int value = 0xffff;
 

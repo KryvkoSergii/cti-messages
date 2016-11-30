@@ -100,7 +100,7 @@ public class EndCallEvent extends Header {
             }
             return buffer.array();
         } catch (BufferOverflowException e) {
-            throw new Exception("Buffer overflowed during MSG_BEGIN_CALL_EVENT serialization!");
+            throw new Exception("Buffer overflowed during MSG_END_CALL_EVENT serialization!");
         }
     }
 

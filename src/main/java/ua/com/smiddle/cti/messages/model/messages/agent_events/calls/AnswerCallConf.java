@@ -50,7 +50,7 @@ public class AnswerCallConf extends Header {
         try {
             return ByteBuffer.allocate(MHDR + FIXED_PART).putInt(getMessageLength()).putInt(getMessageType()).putInt(invokeId).array();
         } catch (BufferOverflowException e) {
-            throw new CTIMessageException("Buffer overflowed during HEART_BEAT_CONF serialization!");
+            throw new CTIMessageException("Buffer overflowed during MSG_ANSWER_CALL_CONF serialization!");
         }
     }
 

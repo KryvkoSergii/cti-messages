@@ -221,7 +221,7 @@ public class CallDeliveredEvent extends Header {
     public byte[] serializeMessage() throws Exception {
         try {
             this.setMessageLength(FIXED_PART + FloatingField.calculateFloatingPart(floatingFields));
-            this.setMessageType(CTI.MSG_CALL_DATA_UPDATE_EVENT);
+            this.setMessageType(CTI.MSG_CALL_DELIVERED_EVENT);
             ByteBuffer buffer = ByteBuffer.allocate(MHDR + this.getMessageLength())
                     .putInt(this.getMessageLength())
                     .putInt(this.getMessageType())
@@ -250,7 +250,7 @@ public class CallDeliveredEvent extends Header {
             }
             return buffer.array();
         } catch (BufferOverflowException e) {
-            throw new Exception("Buffer overflowed during MSG_CALL_DATA_UPDATE_EVENT serialization!");
+            throw new Exception("Buffer overflowed during MSG_CALL_DELIVERED_EVENT serialization!");
         }
     }
 

@@ -1,10 +1,12 @@
 package ua.com.smiddle.cti.messages.model.messages.agent_events.calls;
 
+import java.io.Serializable;
+
 /**
  * @author ksa on 30.11.16.
  * @project cti-messages
  */
-public enum CallTypes {
+public enum CallTypes implements Serializable {
     CALLTYPE_UNKNOWN {
         private final int value = 0;
         private final String msg = "Unknown call type";

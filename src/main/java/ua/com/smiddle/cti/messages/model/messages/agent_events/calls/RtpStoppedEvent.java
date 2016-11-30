@@ -3,8 +3,8 @@ package ua.com.smiddle.cti.messages.model.messages.agent_events.calls;
 import ua.com.smiddle.cti.messages.model.messages.CTI;
 import ua.com.smiddle.cti.messages.model.messages.common.FloatingField;
 import ua.com.smiddle.cti.messages.model.messages.common.Header;
+
 import java.nio.BufferOverflowException;
-import java.nio.BufferUnderflowException;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,37 +13,31 @@ import java.util.List;
  * @author ksa on 30.11.16.
  * @project cti-messages
  */
-public class AnswerCallReq extends Header {
-    private final static int FIXED_PART = 14;
-    private final static int MAX_LENGTH = 154;
-    List<FloatingField> floatingFields = new ArrayList();
-    private int invokeId;
+public class RtpStoppedEvent extends Header {
+    private final static int FIXED_PART = 20;
+    private final static int MAX_LENGTH = 210;
+    private int monitorId;
     private int peripheralId;
-    private int connectionCallID;
+    private int clientPort;
+    private CallDirection direction;
     private ConnectionDeviceIDTypes connectionDeviceIDType;
+    private int connectionCallID;
+    List<FloatingField> floatingFields = new ArrayList<>();
 
 
     //Constructors
-    public AnswerCallReq() {
-        super(CTI.MSG_ANSWER_CALL_REQ);
+    public RtpStoppedEvent() {
+        super(CTI.MSG_RTP_STOPPED_EVENT);
     }
 
 
     //Getters and setters
-    public List<FloatingField> getFloatingFields() {
-        return floatingFields;
+    public int getMonitorId() {
+        return monitorId;
     }
 
-    public void setFloatingFields(List<FloatingField> floatingFields) {
-        this.floatingFields = floatingFields;
-    }
-
-    public int getInvokeId() {
-        return invokeId;
-    }
-
-    public void setInvokeId(int invokeId) {
-        this.invokeId = invokeId;
+    public void setMonitorId(int monitorId) {
+        this.monitorId = monitorId;
     }
 
     public int getPeripheralId() {
@@ -52,6 +46,22 @@ public class AnswerCallReq extends Header {
 
     public void setPeripheralId(int peripheralId) {
         this.peripheralId = peripheralId;
+    }
+
+    public int getClientPort() {
+        return clientPort;
+    }
+
+    public void setClientPort(int clientPort) {
+        this.clientPort = clientPort;
+    }
+
+    public CallDirection getDirection() {
+        return direction;
+    }
+
+    public void setDirection(CallDirection direction) {
+        this.direction = direction;
     }
 
     public ConnectionDeviceIDTypes getConnectionDeviceIDType() {
@@ -70,59 +80,48 @@ public class AnswerCallReq extends Header {
         this.connectionCallID = connectionCallID;
     }
 
+    public List<FloatingField> getFloatingFields() {
+        return floatingFields;
+    }
+
+    public void setFloatingFields(List<FloatingField> floatingFields) {
+        this.floatingFields = floatingFields;
+    }
+
 
     //Methods
     public byte[] serializeMessage() throws Exception {
         try {
             this.setMessageLength(FIXED_PART + FloatingField.calculateFloatingPart(floatingFields));
-            this.setMessageType(CTI.MSG_ANSWER_CALL_REQ);
+            this.setMessageType(CTI.MSG_RTP_STOPPED_EVENT);
             ByteBuffer buffer = ByteBuffer.allocate(MHDR + this.getMessageLength())
                     .putInt(this.getMessageLength())
                     .putInt(this.getMessageType())
-                    .putInt(invokeId)
+                    .putInt(monitorId)
                     .putInt(peripheralId)
-                    .putInt(connectionCallID)
-                    .putShort((short) connectionDeviceIDType.getValue());
+                    .putInt(clientPort)
+                    .putShort((short) direction.ordinal())
+                    .putShort((short) connectionDeviceIDType.getValue())
+                    .putInt(connectionCallID);
             for (FloatingField field : floatingFields) {
                 field.serializeField(buffer);
             }
             return buffer.array();
         } catch (BufferOverflowException e) {
-            throw new Exception("Buffer overflowed during MSG_ANSWER_CALL_REQ serialization!");
-        }
-    }
-
-    public static AnswerCallReq deserializeMessage(byte[] bytes) {
-        ByteBuffer buffer = ByteBuffer.wrap(bytes);
-        AnswerCallReq message = new AnswerCallReq();
-        try {
-            message.setMessageLength(buffer.getInt());
-            message.setMessageType(buffer.getInt());
-            message.setInvokeId(buffer.getInt());
-            message.setPeripheralId(buffer.getInt());
-            message.setConnectionCallID(buffer.getInt());
-            message.setConnectionDeviceIDType(ConnectionDeviceIDTypes.getType(Short.toUnsignedInt(buffer.getShort())));
-            while (true) {
-                try {
-                    message.getFloatingFields().add(FloatingField.deserializeField(buffer));
-                } catch (BufferUnderflowException e) {
-                    break;
-                }
-            }
-            return message;
-        } catch (BufferUnderflowException e) {
-            return message;
+            throw new Exception("Buffer overflowed during MSG_RTP_STOPPED_EVENT serialization!");
         }
     }
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("BeginCallEvent{");
+        final StringBuilder sb = new StringBuilder("RtpStoppedEvent{");
         sb.append(super.toString());
-        sb.append(", invokeId=").append(invokeId);
+        sb.append(", monitorId=").append(monitorId);
         sb.append(", peripheralId=").append(peripheralId);
-        sb.append(", connectionCallID=").append(connectionCallID);
+        sb.append(", clientPort=").append(clientPort);
+        sb.append(", direction=").append(direction);
         sb.append(", connectionDeviceIDType=").append(connectionDeviceIDType);
+        sb.append(", connectionCallID=").append(connectionCallID);
         sb.append(", floatingFields=").append(floatingFields);
         sb.append('}');
         return sb.toString();
