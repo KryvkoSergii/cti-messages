@@ -132,7 +132,7 @@ public class AgentPreCallEvent extends Header {
                     .putInt(serviceID)
                     .putInt(skillGroupNumber)
                     .putInt(skillGroupID)
-                    .putInt(skillGroupPriority)
+                    .putShort(skillGroupPriority)
                     .putInt(mrdid);
             for (FloatingField field : floatingFields) {
                 field.serializeField(buffer);

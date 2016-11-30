@@ -6,6 +6,8 @@ import ua.com.smiddle.cti.messages.model.messages.common.Header;
 import ua.com.smiddle.cti.messages.model.messages.common.PeripheralTypes;
 import ua.com.smiddle.cti.messages.model.messages.miscellaneous.EventDeviceTypes;
 
+import java.nio.BufferOverflowException;
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -212,5 +214,72 @@ public class CallDeliveredEvent extends Header {
 
     public void setFloatingFields(List<FloatingField> floatingFields) {
         this.floatingFields = floatingFields;
+    }
+
+
+    //Methods
+    public byte[] serializeMessage() throws Exception {
+        try {
+            this.setMessageLength(FIXED_PART + FloatingField.calculateFloatingPart(floatingFields));
+            this.setMessageType(CTI.MSG_CALL_DATA_UPDATE_EVENT);
+            ByteBuffer buffer = ByteBuffer.allocate(MHDR + this.getMessageLength())
+                    .putInt(this.getMessageLength())
+                    .putInt(this.getMessageType())
+                    .putInt(monitorId)
+                    .putInt(peripheralId)
+                    .putShort((short) PeripheralTypes.getInt(peripheralType))
+                    .putShort((short) connectionDeviceIDType.getValue())
+                    .putInt(connectionCallID)
+                    .putShort(lineHandle)
+                    .putShort((short) lineType.getValue())
+                    .putInt(serviceNumber)
+                    .putInt(serviceID)
+                    .putInt(skillGroupNumber)
+                    .putInt(skillGroupID)
+                    .putShort(skillGroupPriority)
+                    .putShort((short) alertingDeviceType.getMask())
+                    .putShort((short) callingDeviceType.getMask())
+                    .putShort((short) calledDeviceType.getMask())
+                    .putShort((short) lastRedirectDeviceType.getMask())
+                    .putShort((short) localConnectionState.getValue())
+                    .putShort((short) eventCause.getValue())
+                    .putShort(numNamedVariables)
+                    .putShort(numNamedArrays);
+            for (FloatingField field : floatingFields) {
+                field.serializeField(buffer);
+            }
+            return buffer.array();
+        } catch (BufferOverflowException e) {
+            throw new Exception("Buffer overflowed during MSG_CALL_DATA_UPDATE_EVENT serialization!");
+        }
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("CallDeliveredEvent{");
+        sb.append(super.toString());
+        sb.append(", monitorId=").append(monitorId);
+        sb.append(", peripheralId=").append(peripheralId);
+        sb.append(", peripheralType=").append(peripheralType);
+        sb.append(", connectionDeviceIDType=").append(connectionDeviceIDType);
+        sb.append(", connectionCallID=").append(connectionCallID);
+        sb.append(", lineHandle=").append(lineHandle);
+        sb.append(", lineType=").append(lineType);
+        sb.append(", serviceNumber=").append(serviceNumber);
+        sb.append(", serviceID=").append(serviceID);
+        sb.append(", skillGroupNumber=").append(skillGroupNumber);
+        sb.append(", skillGroupID=").append(skillGroupID);
+        sb.append(", skillGroupPriority=").append(skillGroupPriority);
+        sb.append(", alertingDeviceType=").append(alertingDeviceType);
+        sb.append(", callingDeviceType=").append(callingDeviceType);
+        sb.append(", calledDeviceType=").append(calledDeviceType);
+        sb.append(", lastRedirectDeviceType=").append(lastRedirectDeviceType);
+        sb.append(", localConnectionState=").append(localConnectionState);
+        sb.append(", eventCause=").append(eventCause);
+        sb.append(", numNamedVariables=").append(numNamedVariables);
+        sb.append(", numNamedArrays=").append(numNamedArrays);
+        sb.append(", floatingFields=").append(floatingFields);
+        sb.append('}');
+        return sb.toString();
     }
 }
