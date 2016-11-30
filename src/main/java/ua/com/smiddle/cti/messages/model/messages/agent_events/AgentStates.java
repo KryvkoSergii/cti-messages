@@ -1,10 +1,12 @@
 package ua.com.smiddle.cti.messages.model.messages.agent_events;
 
+import java.io.Serializable;
+
 /**
  * Added by A.Osadchuk on 31.08.2016 at 13:42.
  * Project: SmiddleRecording
  */
-public enum AgentStates {
+public enum AgentStates implements Serializable {
     AGENT_STATE_LOGIN, AGENT_STATE_LOGOUT, AGENT_STATE_NOT_READY, AGENT_STATE_AVAILABLE, AGENT_STATE_TALKING,
     AGENT_STATE_WORK_NOT_READY, AGENT_STATE_WORK_READY, AGENT_STATE_BUSY_OTHER, AGENT_STATE_RESERVED, AGENT_STATE_UNKNOWN,
     AGENT_STATE_HOLD, AGENT_STATE_ACTIVE, AGENT_STATE_PAUSED, AGENT_STATE_INTERRUPTED, AGENT_STATE_NOT_ACTIVE;
