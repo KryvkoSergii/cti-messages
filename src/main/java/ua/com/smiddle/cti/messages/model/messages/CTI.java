@@ -59,7 +59,7 @@ public abstract class CTI {
     /**
      * Notification of inbound call arrival.
      */
-    public final static int MSG_CALL_DELIVERED_EVENT= 9;
+    public final static int MSG_CALL_DELIVERED_EVENT = 9;
     /**
      * Notification of answering of inbound call.
      */
@@ -320,6 +320,30 @@ public abstract class CTI {
      * Notification that a CTI Client session has been terminated.
      */
     public final static int MSG_CLIENT_SESSION_CLOSED_EVENT = 100;
+    /**
+     * Advance notification of a call routed to an Enterprise Agent.
+     */
+    public final static int MSG_AGENT_PRE_CALL_EVENT = 105;
+    /**
+     * Cancellation of advance notification of a call routed to an Enterprise Agent.
+     */
+    public final static int MSG_AGENT_PRE_CALL_ABORT_EVENT = 106;
+    /**
+     * Request for current agent call handling statistics.
+     */
+    public final static int MSG_QUERY_AGENT_STATISTICS_REQ = 112;
+    /**
+     * Response to a previous QUERY_AGENT_STATISTICS_REQ request.
+     */
+    public final static int MSG_QUERY_AGENT_STATISTICS_CONF = 113;
+    /**
+     * Indicates that a RTP input has been started.
+     */
+    public final static int MSG_RTP_STARTED_EVENT = 116;
+    /**
+     * Indicates that a RTP input has been stopped.
+     */
+    public final static int MSG_RTP_STOPPED_EVENT = 117;
     /**
      * Once a supervisor CTI client session is opened, the CTIServer will send one or more
      * AGENT_TEAM_CONFIG_EVENT messages with the list of team members for that supervisor.
