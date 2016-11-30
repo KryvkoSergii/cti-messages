@@ -20,11 +20,14 @@ public class BeginCallEvent extends Header {
     private short numCTIClients;
     private short numNamedVariables;
     private short NumNamedArrays;
-    CallType
+    private CallTypes callType;
+    private ConnectionDeviceIDTypes connectionDeviceIDType;
+    private int connectionCallID;
+    private short calledPartyDisposition;
 
-
-
-
+    public BeginCallEvent() {
+        super(messageType);
+    }
 
     private AgentStates agentState;
     private short agentWorkMode;

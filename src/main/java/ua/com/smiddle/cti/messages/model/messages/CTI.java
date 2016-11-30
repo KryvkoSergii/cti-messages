@@ -57,6 +57,90 @@ public abstract class CTI {
      */
     public final static int MSG_CLOSE_CONF = 8;
     /**
+     * Notification of inbound call arrival.
+     */
+    public final static int CALL_DELIVERED_EVENT= 9;
+    /**
+     * Notification of answering of inbound call.
+     */
+    public final static int CALL_ESTABLISHED_EVENT = 10;
+    /**
+     * Notification of call placed on hold.
+     */
+    public final static int CALL_HELD_EVENT = 11;
+    /**
+     * Notification of call taken off hold.
+     */
+    public final static int CALL_RETRIEVED_EVENT = 12;
+    /**
+     * Notification of call termination.
+     */
+    public final static int CALL_CLEARED_EVENT = 13;
+    /**
+     * Notification of the termination of a conference party connection.
+     */
+    public final static int CALL_CONNECTION_CLEARED_EVENT = 14;
+    /**
+     * Notification of outbound call initiation.
+     */
+    public final static int CALL_ORIGINATED_EVENT = 15;
+    /**
+     * Notification of inability to complete call.
+     */
+    public final static int CALL_FAILED_EVENT = 16;
+    /**
+     * Notification of tandem connection of two calls.
+     */
+    public final static int CALL_CONFERENCED_EVENT = 17;
+    /**
+     * Notification of call transfer.
+     */
+    public final static int CALL_TRANSFERRED_EVENT = 18;
+    /**
+     * Notification of call changing to a different service.
+     */
+    public final static int CALL_DIVERTED_EVENT = 19;
+    /**
+     * Notification of the initiation of telecommunications service at a device (“dial-tone”).
+     */
+    public final static int CALL_SERVICE_INITIATED_EVENT = 20;
+    /**
+     * Notification of call being placed in a queue pending the availability of some resource.
+     */
+    public final static int CALL_QUEUED_EVENT = 21;
+    /**
+     * Notification of call context data for a call that has been routed to the peripheral via a translation route.
+     */
+    public final static int CALL_TRANSLATION_ROUTE_EVENT = 22;
+    /**
+     * Notification that a call has been associated with the CTI client.
+     */
+    public final static int BEGIN_CALL_EVENT = 23;
+    /**
+     * Notification that a call is no longer associated with a CTI client.
+     */
+    public final static int END_CALL_EVENT = 24;
+    /**
+     * Notification of a change in a call’s context data.
+     */
+    public final static int CALL_DATA_UPDATE_EVENT = 25;
+    /**
+     * Request to update one or more call variables or call wrap-up data.
+     */
+    public final static int SET_CALL_DATA_REQ = 26;
+    /**
+     * Response confirming a previous SET_CALL_DATA request.
+     */
+    public final static int SET_CALL_DATA_CONF = 27;
+    /**
+     * Notification that all call data updates are complete.
+     */
+    public final static int RELEASE_CALL_REQ = 28;
+    /**
+     * Response confirming a previous RELEASE_CALL request.
+     */
+    public final static int RELEASE_CALL_CONF = 29;
+    /**
      * Notification of new agent state.
      */
     public final static int MSG_AGENT_STATE_EVENT = 30;
