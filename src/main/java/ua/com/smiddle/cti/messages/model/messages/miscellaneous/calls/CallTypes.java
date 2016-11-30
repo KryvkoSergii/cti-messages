@@ -12,6 +12,11 @@ public enum CallTypes {
         public String getDescription() {
             return msg;
         }
+
+        @Override
+        public int getValue() {
+            return value;
+        }
     },
     CALLTYPE_ACD_IN {
         private final int value = 1;
@@ -19,6 +24,11 @@ public enum CallTypes {
 
         public String getDescription() {
             return msg;
+        }
+
+        @Override
+        public int getValue() {
+            return value;
         }
     },
     CALLTYPE_PREROUTE_ACD_IN {
@@ -28,6 +38,11 @@ public enum CallTypes {
         public String getDescription() {
             return msg;
         }
+
+        @Override
+        public int getValue() {
+            return value;
+        }
     },
     CALLTYPE_PREROUTE_DIRECT_AGENT {
         private final int value = 3;
@@ -35,6 +50,11 @@ public enum CallTypes {
 
         public String getDescription() {
             return msg;
+        }
+
+        @Override
+        public int getValue() {
+            return value;
         }
     },
     CALLTYPE_TRANSFER_IN {
@@ -44,6 +64,11 @@ public enum CallTypes {
         public String getDescription() {
             return msg;
         }
+
+        @Override
+        public int getValue() {
+            return value;
+        }
     },
     CALLTYPE_OVERFLOW_IN {
         private final int value = 5;
@@ -51,6 +76,11 @@ public enum CallTypes {
 
         public String getDescription() {
             return msg;
+        }
+
+        @Override
+        public int getValue() {
+            return value;
         }
     },
     CALLTYPE_OTHER_IN {
@@ -60,6 +90,11 @@ public enum CallTypes {
         public String getDescription() {
             return msg;
         }
+
+        @Override
+        public int getValue() {
+            return value;
+        }
     },
     CALLTYPE_AUTO_OUT {
         private final int value = 7;
@@ -67,6 +102,11 @@ public enum CallTypes {
 
         public String getDescription() {
             return msg;
+        }
+
+        @Override
+        public int getValue() {
+            return value;
         }
     },
     CALLTYPE_AGENT_OUT {
@@ -76,6 +116,11 @@ public enum CallTypes {
         public String getDescription() {
             return msg;
         }
+
+        @Override
+        public int getValue() {
+            return value;
+        }
     },
     CALLTYPE_OUT {
         private final int value = 9;
@@ -83,6 +128,11 @@ public enum CallTypes {
 
         public String getDescription() {
             return msg;
+        }
+
+        @Override
+        public int getValue() {
+            return value;
         }
     },
     CALLTYPE_AGENT_INSIDE {
@@ -92,6 +142,11 @@ public enum CallTypes {
         public String getDescription() {
             return msg;
         }
+
+        @Override
+        public int getValue() {
+            return value;
+        }
     },
     CALLTYPE_OFFERED {
         private final int value = 11;
@@ -99,6 +154,11 @@ public enum CallTypes {
 
         public String getDescription() {
             return msg;
+        }
+
+        @Override
+        public int getValue() {
+            return value;
         }
     },
     CALLTYPE_CONSULT {
@@ -108,6 +168,11 @@ public enum CallTypes {
         public String getDescription() {
             return msg;
         }
+
+        @Override
+        public int getValue() {
+            return value;
+        }
     },
     CALLTYPE_CONSULT_OFFERRED {
         private final int value = 13;
@@ -115,6 +180,11 @@ public enum CallTypes {
 
         public String getDescription() {
             return msg;
+        }
+
+        @Override
+        public int getValue() {
+            return value;
         }
     },
     CALLTYPE_CONSULT_CONFERENCE {
@@ -124,6 +194,11 @@ public enum CallTypes {
         public String getDescription() {
             return msg;
         }
+
+        @Override
+        public int getValue() {
+            return value;
+        }
     },
     CALLTYPE_CONFERENCE {
         private final int value = 15;
@@ -131,6 +206,11 @@ public enum CallTypes {
 
         public String getDescription() {
             return msg;
+        }
+
+        @Override
+        public int getValue() {
+            return value;
         }
     },
     CALLTYPE_UNMONITORED {
@@ -140,6 +220,11 @@ public enum CallTypes {
         public String getDescription() {
             return msg;
         }
+
+        @Override
+        public int getValue() {
+            return value;
+        }
     },
     CALLTYPE_PREVIEW {
         private final int value = 17;
@@ -147,6 +232,11 @@ public enum CallTypes {
 
         public String getDescription() {
             return msg;
+        }
+
+        @Override
+        public int getValue() {
+            return value;
         }
     },
     CALLTYPE_RESERVATION {
@@ -156,6 +246,11 @@ public enum CallTypes {
         public String getDescription() {
             return msg;
         }
+
+        @Override
+        public int getValue() {
+            return value;
+        }
     },
     CALLTYPE_ASSIST {
         private final int value = 19;
@@ -163,6 +258,11 @@ public enum CallTypes {
 
         public String getDescription() {
             return msg;
+        }
+
+        @Override
+        public int getValue() {
+            return value;
         }
     },
     CALLTYPE_EMERGENCY {
@@ -172,6 +272,11 @@ public enum CallTypes {
         public String getDescription() {
             return msg;
         }
+
+        @Override
+        public int getValue() {
+            return value;
+        }
     },
     CALLTYPE_SUPERVISOR_MONITOR {
         private final int value = 21;
@@ -179,6 +284,11 @@ public enum CallTypes {
 
         public String getDescription() {
             return msg;
+        }
+
+        @Override
+        public int getValue() {
+            return value;
         }
     },
     CALLTYPE_SUPERVISOR_WHISPER {
@@ -188,6 +298,11 @@ public enum CallTypes {
         public String getDescription() {
             return msg;
         }
+
+        @Override
+        public int getValue() {
+            return value;
+        }
     },
     CALLTYPE_SUPERVISOR_BARGEIN {
         private final int value = 23;
@@ -195,6 +310,11 @@ public enum CallTypes {
 
         public String getDescription() {
             return msg;
+        }
+
+        @Override
+        public int getValue() {
+            return value;
         }
     },
     CALLTYPE_SUPERVISOR_INTERCEPT {
@@ -204,6 +324,11 @@ public enum CallTypes {
         public String getDescription() {
             return msg;
         }
+
+        @Override
+        public int getValue() {
+            return value;
+        }
     },
     CALLTYPE_TASK_ROUTED_BY_ICM {
         private final int value = 25;
@@ -212,6 +337,11 @@ public enum CallTypes {
         public String getDescription() {
             return msg;
         }
+
+        @Override
+        public int getValue() {
+            return value;
+        }
     },
     CALLTYPE_TASK_ROUTED_BY_APPLICATION {
         private final int value = 26;
@@ -219,6 +349,11 @@ public enum CallTypes {
 
         public String getDescription() {
             return msg;
+        }
+
+        @Override
+        public int getValue() {
+            return value;
         }
     },
 
@@ -231,6 +366,11 @@ public enum CallTypes {
         public String getDescription() {
             return msg;
         }
+
+        @Override
+        public int getValue() {
+            return value;
+        }
     },
     RESERVATION_PREVIEW_DIRECT {
         private final int value = 28;
@@ -238,6 +378,11 @@ public enum CallTypes {
 
         public String getDescription() {
             return msg;
+        }
+
+        @Override
+        public int getValue() {
+            return value;
         }
     },
     RESERVATION_PREDICTIVE {
@@ -247,6 +392,11 @@ public enum CallTypes {
         public String getDescription() {
             return msg;
         }
+
+        @Override
+        public int getValue() {
+            return value;
+        }
     },
     RESERVATION_CALLBACK {
         private final int value = 30;
@@ -254,6 +404,11 @@ public enum CallTypes {
 
         public String getDescription() {
             return msg;
+        }
+
+        @Override
+        public int getValue() {
+            return value;
         }
     },
     RESERVATION_PERSONAL_CALLBACK {
@@ -263,6 +418,11 @@ public enum CallTypes {
         public String getDescription() {
             return msg;
         }
+
+        @Override
+        public int getValue() {
+            return value;
+        }
     },
     CUSTOMER_PREVIEW {
         private final int value = 32;
@@ -270,6 +430,11 @@ public enum CallTypes {
 
         public String getDescription() {
             return msg;
+        }
+
+        @Override
+        public int getValue() {
+            return value;
         }
     },
     CUSTOMER_PREVIEW_DIRECT {
@@ -279,6 +444,11 @@ public enum CallTypes {
         public String getDescription() {
             return msg;
         }
+
+        @Override
+        public int getValue() {
+            return value;
+        }
     },
     CUSTOMER_PREDICTIVE {
         private final int value = 34;
@@ -286,6 +456,11 @@ public enum CallTypes {
 
         public String getDescription() {
             return msg;
+        }
+
+        @Override
+        public int getValue() {
+            return value;
         }
     },
     CUSTOMER_CALLBACK {
@@ -295,6 +470,11 @@ public enum CallTypes {
         public String getDescription() {
             return msg;
         }
+
+        @Override
+        public int getValue() {
+            return value;
+        }
     },
     CUSTOMER_PERSONAL {
         private final int value = 36;
@@ -302,6 +482,11 @@ public enum CallTypes {
 
         public String getDescription() {
             return msg;
+        }
+
+        @Override
+        public int getValue() {
+            return value;
         }
     },
     CUSTOMER_IVR {
@@ -311,6 +496,11 @@ public enum CallTypes {
         public String getDescription() {
             return msg;
         }
+
+        @Override
+        public int getValue() {
+            return value;
+        }
     },
     CALLTYPE_NON_ACD {
         private final int value = 38;
@@ -318,6 +508,11 @@ public enum CallTypes {
 
         public String getDescription() {
             return msg;
+        }
+
+        @Override
+        public int getValue() {
+            return value;
         }
     },
     CALLTYPE_PLAY_AGENT_GREETING {
@@ -327,6 +522,11 @@ public enum CallTypes {
         public String getDescription() {
             return msg;
         }
+
+        @Override
+        public int getValue() {
+            return value;
+        }
     },
     CALLTYPE_RECORD_AGENT_GREETING {
         private final int value = 40;
@@ -334,6 +534,11 @@ public enum CallTypes {
 
         public String getDescription() {
             return msg;
+        }
+
+        @Override
+        public int getValue() {
+            return value;
         }
     },
     CALLTYPE_VOICE_CALL_BACK {
@@ -343,20 +548,23 @@ public enum CallTypes {
         public String getDescription() {
             return msg;
         }
+
+        @Override
+        public int getValue() {
+            return value;
+        }
     };
 
 
     //Methods
     public abstract String getDescription();
 
+    public abstract int getValue();
+
     public static CallTypes getType(int mask) {
         for (CallTypes code : CallTypes.values()) {
             if (code.ordinal() == mask) return code;
         }
         return CALLTYPE_UNKNOWN;
-    }
-
-    public static short getValue(CallTypes type) {
-        return (short) type.ordinal();
     }
 }
