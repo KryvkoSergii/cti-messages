@@ -1,8 +1,12 @@
-package ua.com.smiddle.cti.messages.model.messages.agent_events.calls;
+package ua.com.smiddle.cti.messages.model.messages.calls.events;
 
 import ua.com.smiddle.cti.messages.model.messages.CTI;
+import ua.com.smiddle.cti.messages.model.messages.calls.ConnectionDeviceIDTypes;
+import ua.com.smiddle.cti.messages.model.messages.calls.EventCause;
+import ua.com.smiddle.cti.messages.model.messages.calls.LocalConnectionState;
 import ua.com.smiddle.cti.messages.model.messages.common.FloatingField;
 import ua.com.smiddle.cti.messages.model.messages.common.Header;
+import ua.com.smiddle.cti.messages.model.messages.common.PeripheralTypes;
 
 import java.nio.BufferOverflowException;
 import java.nio.ByteBuffer;
@@ -10,24 +14,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author ksa on 30.11.16.
+ * @author ksa on 01.12.16.
  * @project cti-messages
  */
-public class RtpStoppedEvent extends Header {
+public class CallClearedEvent extends Header {
     private final static int FIXED_PART = 20;
-    private final static int MAX_LENGTH = 210;
+    private final static int MAX_LENGTH = 94;
     private int monitorId;
     private int peripheralId;
-    private int clientPort;
-    private CallDirection direction;
+    private PeripheralTypes peripheralType;
     private ConnectionDeviceIDTypes connectionDeviceIDType;
     private int connectionCallID;
+    private LocalConnectionState localConnectionState;
+    private EventCause eventCause;
     List<FloatingField> floatingFields = new ArrayList<>();
 
 
     //Constructors
-    public RtpStoppedEvent() {
-        super(CTI.MSG_RTP_STOPPED_EVENT);
+    public CallClearedEvent() {
+        super(CTI.MSG_CALL_CLEARED_EVENT);
     }
 
 
@@ -48,20 +53,12 @@ public class RtpStoppedEvent extends Header {
         this.peripheralId = peripheralId;
     }
 
-    public int getClientPort() {
-        return clientPort;
+    public PeripheralTypes getPeripheralType() {
+        return peripheralType;
     }
 
-    public void setClientPort(int clientPort) {
-        this.clientPort = clientPort;
-    }
-
-    public CallDirection getDirection() {
-        return direction;
-    }
-
-    public void setDirection(CallDirection direction) {
-        this.direction = direction;
+    public void setPeripheralType(PeripheralTypes peripheralType) {
+        this.peripheralType = peripheralType;
     }
 
     public ConnectionDeviceIDTypes getConnectionDeviceIDType() {
@@ -80,6 +77,22 @@ public class RtpStoppedEvent extends Header {
         this.connectionCallID = connectionCallID;
     }
 
+    public LocalConnectionState getLocalConnectionState() {
+        return localConnectionState;
+    }
+
+    public void setLocalConnectionState(LocalConnectionState localConnectionState) {
+        this.localConnectionState = localConnectionState;
+    }
+
+    public EventCause getEventCause() {
+        return eventCause;
+    }
+
+    public void setEventCause(EventCause eventCause) {
+        this.eventCause = eventCause;
+    }
+
     public List<FloatingField> getFloatingFields() {
         return floatingFields;
     }
@@ -93,35 +106,37 @@ public class RtpStoppedEvent extends Header {
     public byte[] serializeMessage() throws Exception {
         try {
             this.setMessageLength(FIXED_PART + FloatingField.calculateFloatingPart(floatingFields));
-            this.setMessageType(CTI.MSG_RTP_STOPPED_EVENT);
+            this.setMessageType(CTI.MSG_CALL_CLEARED_EVENT);
             ByteBuffer buffer = ByteBuffer.allocate(MHDR + this.getMessageLength())
                     .putInt(this.getMessageLength())
                     .putInt(this.getMessageType())
                     .putInt(monitorId)
                     .putInt(peripheralId)
-                    .putInt(clientPort)
-                    .putShort((short) direction.ordinal())
+                    .putShort((short) PeripheralTypes.getInt(peripheralType))
                     .putShort((short) connectionDeviceIDType.getValue())
-                    .putInt(connectionCallID);
+                    .putInt(connectionCallID)
+                    .putShort((short) localConnectionState.getValue())
+                    .putShort((short) eventCause.getValue());
             for (FloatingField field : floatingFields) {
                 field.serializeField(buffer);
             }
             return buffer.array();
         } catch (BufferOverflowException e) {
-            throw new Exception("Buffer overflowed during MSG_RTP_STOPPED_EVENT serialization!");
+            throw new Exception("Buffer overflowed during MSG_CALL_CLEARED_EVENT serialization!");
         }
     }
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("RtpStoppedEvent{");
+        final StringBuilder sb = new StringBuilder("CallClearedEvent{");
         sb.append(super.toString());
         sb.append(", monitorId=").append(monitorId);
         sb.append(", peripheralId=").append(peripheralId);
-        sb.append(", clientPort=").append(clientPort);
-        sb.append(", direction=").append(direction);
+        sb.append(", peripheralType=").append(peripheralType);
         sb.append(", connectionDeviceIDType=").append(connectionDeviceIDType);
         sb.append(", connectionCallID=").append(connectionCallID);
+        sb.append(", localConnectionState=").append(localConnectionState);
+        sb.append(", eventCause=").append(eventCause);
         sb.append(", floatingFields=").append(floatingFields);
         sb.append('}');
         return sb.toString();

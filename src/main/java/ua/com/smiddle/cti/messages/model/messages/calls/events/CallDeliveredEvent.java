@@ -1,6 +1,10 @@
-package ua.com.smiddle.cti.messages.model.messages.agent_events.calls;
+package ua.com.smiddle.cti.messages.model.messages.calls.events;
 
 import ua.com.smiddle.cti.messages.model.messages.CTI;
+import ua.com.smiddle.cti.messages.model.messages.calls.ConnectionDeviceIDTypes;
+import ua.com.smiddle.cti.messages.model.messages.calls.EventCause;
+import ua.com.smiddle.cti.messages.model.messages.calls.LineTypes;
+import ua.com.smiddle.cti.messages.model.messages.calls.LocalConnectionState;
 import ua.com.smiddle.cti.messages.model.messages.common.FloatingField;
 import ua.com.smiddle.cti.messages.model.messages.common.Header;
 import ua.com.smiddle.cti.messages.model.messages.common.PeripheralTypes;
@@ -15,8 +19,8 @@ import java.util.List;
  * @author ksa on 30.11.16.
  * @project cti-messages
  */
-public class CallEstablishedEvent extends Header {
-    private final static int FIXED_PART = 50;
+public class CallDeliveredEvent extends Header {
+    private final static int FIXED_PART = 54;
     private final static int MAX_LENGTH = 400;
     private int monitorId;
     private int peripheralId;
@@ -30,18 +34,20 @@ public class CallEstablishedEvent extends Header {
     private int skillGroupNumber;
     private int skillGroupID;
     private short skillGroupPriority;
-    private EventDeviceTypes answeringDeviceType;
+    private EventDeviceTypes alertingDeviceType;
     private EventDeviceTypes callingDeviceType;
     private EventDeviceTypes calledDeviceType;
     private EventDeviceTypes lastRedirectDeviceType;
     private LocalConnectionState localConnectionState;
     private EventCause eventCause;
+    private short numNamedVariables;
+    private short numNamedArrays;
     List<FloatingField> floatingFields = new ArrayList<>();
 
 
     //Constructors
-    public CallEstablishedEvent() {
-        super(CTI.MSG_CALL_ESTABLISHED_EVENT);
+    public CallDeliveredEvent() {
+        super(CTI.MSG_CALL_DELIVERED_EVENT);
     }
 
 
@@ -142,12 +148,12 @@ public class CallEstablishedEvent extends Header {
         this.skillGroupPriority = skillGroupPriority;
     }
 
-    public EventDeviceTypes getAnsweringDeviceType() {
-        return answeringDeviceType;
+    public EventDeviceTypes getAlertingDeviceType() {
+        return alertingDeviceType;
     }
 
-    public void setAnsweringDeviceType(EventDeviceTypes answeringDeviceType) {
-        this.answeringDeviceType = answeringDeviceType;
+    public void setAlertingDeviceType(EventDeviceTypes alertingDeviceType) {
+        this.alertingDeviceType = alertingDeviceType;
     }
 
     public EventDeviceTypes getCallingDeviceType() {
@@ -190,6 +196,22 @@ public class CallEstablishedEvent extends Header {
         this.eventCause = eventCause;
     }
 
+    public short getNumNamedVariables() {
+        return numNamedVariables;
+    }
+
+    public void setNumNamedVariables(short numNamedVariables) {
+        this.numNamedVariables = numNamedVariables;
+    }
+
+    public short getNumNamedArrays() {
+        return numNamedArrays;
+    }
+
+    public void setNumNamedArrays(short numNamedArrays) {
+        this.numNamedArrays = numNamedArrays;
+    }
+
     public List<FloatingField> getFloatingFields() {
         return floatingFields;
     }
@@ -203,7 +225,7 @@ public class CallEstablishedEvent extends Header {
     public byte[] serializeMessage() throws Exception {
         try {
             this.setMessageLength(FIXED_PART + FloatingField.calculateFloatingPart(floatingFields));
-            this.setMessageType(CTI.MSG_CALL_ESTABLISHED_EVENT);
+            this.setMessageType(CTI.MSG_CALL_DELIVERED_EVENT);
             ByteBuffer buffer = ByteBuffer.allocate(MHDR + this.getMessageLength())
                     .putInt(this.getMessageLength())
                     .putInt(this.getMessageType())
@@ -219,24 +241,26 @@ public class CallEstablishedEvent extends Header {
                     .putInt(skillGroupNumber)
                     .putInt(skillGroupID)
                     .putShort(skillGroupPriority)
-                    .putShort((short) answeringDeviceType.getMask())
+                    .putShort((short) alertingDeviceType.getMask())
                     .putShort((short) callingDeviceType.getMask())
                     .putShort((short) calledDeviceType.getMask())
                     .putShort((short) lastRedirectDeviceType.getMask())
                     .putShort((short) localConnectionState.getValue())
-                    .putShort((short) eventCause.getValue());
+                    .putShort((short) eventCause.getValue())
+                    .putShort(numNamedVariables)
+                    .putShort(numNamedArrays);
             for (FloatingField field : floatingFields) {
                 field.serializeField(buffer);
             }
             return buffer.array();
         } catch (BufferOverflowException e) {
-            throw new Exception("Buffer overflowed during MSG_CALL_ESTABLISHED_EVENT serialization!");
+            throw new Exception("Buffer overflowed during MSG_CALL_DELIVERED_EVENT serialization!");
         }
     }
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("CallEstablishedEvent{");
+        final StringBuilder sb = new StringBuilder("CallDeliveredEvent{");
         sb.append(super.toString());
         sb.append(", monitorId=").append(monitorId);
         sb.append(", peripheralId=").append(peripheralId);
@@ -250,12 +274,14 @@ public class CallEstablishedEvent extends Header {
         sb.append(", skillGroupNumber=").append(skillGroupNumber);
         sb.append(", skillGroupID=").append(skillGroupID);
         sb.append(", skillGroupPriority=").append(skillGroupPriority);
-        sb.append(", alertingDeviceType=").append(answeringDeviceType);
+        sb.append(", alertingDeviceType=").append(alertingDeviceType);
         sb.append(", callingDeviceType=").append(callingDeviceType);
         sb.append(", calledDeviceType=").append(calledDeviceType);
         sb.append(", lastRedirectDeviceType=").append(lastRedirectDeviceType);
         sb.append(", localConnectionState=").append(localConnectionState);
         sb.append(", eventCause=").append(eventCause);
+        sb.append(", numNamedVariables=").append(numNamedVariables);
+        sb.append(", numNamedArrays=").append(numNamedArrays);
         sb.append(", floatingFields=").append(floatingFields);
         sb.append('}');
         return sb.toString();

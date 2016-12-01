@@ -1,6 +1,8 @@
-package ua.com.smiddle.cti.messages.model.messages.agent_events.calls;
+package ua.com.smiddle.cti.messages.model.messages.calls.events;
 
 import ua.com.smiddle.cti.messages.model.messages.CTI;
+import ua.com.smiddle.cti.messages.model.messages.calls.CallTypes;
+import ua.com.smiddle.cti.messages.model.messages.calls.ConnectionDeviceIDTypes;
 import ua.com.smiddle.cti.messages.model.messages.common.FloatingField;
 import ua.com.smiddle.cti.messages.model.messages.common.Header;
 import ua.com.smiddle.cti.messages.model.messages.common.PeripheralTypes;

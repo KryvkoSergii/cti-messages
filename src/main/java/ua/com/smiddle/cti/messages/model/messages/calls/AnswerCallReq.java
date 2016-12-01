@@ -1,4 +1,4 @@
-package ua.com.smiddle.cti.messages.model.messages.agent_events.calls;
+package ua.com.smiddle.cti.messages.model.messages.calls;
 
 import ua.com.smiddle.cti.messages.model.messages.CTI;
 import ua.com.smiddle.cti.messages.model.messages.common.FloatingField;

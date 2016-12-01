@@ -1,4 +1,4 @@
-package ua.com.smiddle.cti.messages.model.messages.agent_events.calls;
+package ua.com.smiddle.cti.messages.model.messages.calls;
 
 import java.io.Serializable;
 
