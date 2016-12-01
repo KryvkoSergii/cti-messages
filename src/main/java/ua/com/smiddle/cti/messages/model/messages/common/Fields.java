@@ -125,6 +125,67 @@ public enum Fields {
             return DATA_TYPE_STRING;
         }
     },
+    TAG_ANI {
+        private final static int TAG_ID = 8;
+
+        public int getTagId() {
+            return TAG_ID;
+        }
+
+        public int getMaxLength() {
+            return STRING_40;
+        }
+
+        public String getDataType() {
+            return DATA_TYPE_STRING;
+        }
+    },
+    TAG_DNIS {
+        private final static int TAG_ID = 11;
+
+        public int getTagId() {
+            return TAG_ID;
+        }
+
+        public int getMaxLength() {
+            return STRING_32;
+        }
+
+        public String getDataType() {
+            return DATA_TYPE_STRING;
+        }
+    },
+    TAG_DIALED_NUMBER {
+        private final static int TAG_ID = 10;
+
+        public int getTagId() {
+            return TAG_ID;
+        }
+
+        public int getMaxLength() {
+            return STRING_40;
+        }
+
+        public String getDataType() {
+            return DATA_TYPE_STRING;
+        }
+    },
+    TAG_CONNECTION_DEVID {
+        private final static int TAG_ID = 25;
+
+        public int getTagId() {
+            return TAG_ID;
+        }
+
+        public int getMaxLength() {
+            return STRING_64;
+        }
+
+        public String getDataType() {
+            return DATA_TYPE_STRING;
+        }
+    },
+
     TAG_SKILL_GROUP_NUMBER {
         private final static int TAG_ID = 62;
 
@@ -314,6 +375,8 @@ public enum Fields {
     //Field length
     public final static int STRING_12 = 12;
     public final static int STRING_16 = 16;
+    public final static int STRING_32 = 32;
+    public final static int STRING_40 = 40;
     public final static int STRING_64 = 64;
     public final static int STRING_255 = 255;
 
