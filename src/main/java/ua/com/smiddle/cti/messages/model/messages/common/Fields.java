@@ -185,7 +185,69 @@ public enum Fields {
             return DATA_TYPE_STRING;
         }
     },
+    TAG_ALERTING_DEVID {
+        private final static int TAG_ID = 26;
 
+        public int getTagId() {
+            return TAG_ID;
+        }
+
+        public int getMaxLength() {
+            return STRING_64;
+        }
+
+        public String getDataType() {
+            return DATA_TYPE_STRING;
+        }
+    },
+    TAG_CALLING_DEVID {
+        private final static int TAG_ID = 27;
+
+        public int getTagId() {
+            return TAG_ID;
+        }
+
+        public int getMaxLength() {
+            return STRING_64;
+        }
+
+        public String getDataType() {
+            return DATA_TYPE_STRING;
+        }
+    },
+    TAG_CALLED_DEVID {
+        private final static int TAG_ID = 28;
+
+        public int getTagId() {
+            return TAG_ID;
+        }
+
+        public int getMaxLength() {
+            return STRING_64;
+        }
+
+        public String getDataType() {
+            return DATA_TYPE_STRING;
+        }
+    },
+    TAG_LAST_REDIRECT_DEVID {
+        private final static int TAG_ID = 29;
+
+        public int getTagId() {
+            return TAG_ID;
+        }
+
+        public int getMaxLength() {
+            return STRING_64;
+        }
+
+        public String getDataType() {
+            return DATA_TYPE_STRING;
+        }
+    },
+    //    TAG_ANSWERING_DEVID{
+//        private final static int TAG_ID = 29;
+//    },
     TAG_SKILL_GROUP_NUMBER {
         private final static int TAG_ID = 62;
 
