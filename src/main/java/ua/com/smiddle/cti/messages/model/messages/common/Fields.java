@@ -245,6 +245,21 @@ public enum Fields {
             return DATA_TYPE_STRING;
         }
     },
+    TAG_NEW_CONNECTION_DEVID {
+        private final static int TAG_ID = 47;
+
+        public int getTagId() {
+            return TAG_ID;
+        }
+
+        public int getMaxLength() {
+            return STRING_64;
+        }
+
+        public String getDataType() {
+            return DATA_TYPE_STRING;
+        }
+    },
     //    TAG_ANSWERING_DEVID{
 //        private final static int TAG_ID = 29;
 //    },
