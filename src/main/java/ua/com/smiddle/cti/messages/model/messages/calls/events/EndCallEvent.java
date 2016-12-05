@@ -131,7 +131,7 @@ public class EndCallEvent extends Header {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("BeginCallEvent{");
+        final StringBuilder sb = new StringBuilder("EndCallEvent{");
         sb.append(super.toString());
         sb.append(", floatingFields=").append(floatingFields);
         sb.append(", monitorId=").append(monitorId);

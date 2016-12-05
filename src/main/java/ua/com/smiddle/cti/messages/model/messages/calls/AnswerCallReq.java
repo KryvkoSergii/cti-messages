@@ -117,7 +117,7 @@ public class AnswerCallReq extends Header {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("BeginCallEvent{");
+        final StringBuilder sb = new StringBuilder("AnswerCallReq{");
         sb.append(super.toString());
         sb.append(", invokeId=").append(invokeId);
         sb.append(", peripheralId=").append(peripheralId);
