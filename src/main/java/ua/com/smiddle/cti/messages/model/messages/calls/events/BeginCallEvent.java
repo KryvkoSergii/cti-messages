@@ -189,7 +189,6 @@ public class BeginCallEvent extends Header {
     public String toString() {
         final StringBuilder sb = new StringBuilder("BeginCallEvent{");
         sb.append(super.toString());
-        sb.append(", floatingFields=").append(floatingFields);
         sb.append(", monitorId=").append(monitorId);
         sb.append(", peripheralId=").append(peripheralId);
         sb.append(", peripheralType=").append(peripheralType);
@@ -200,6 +199,7 @@ public class BeginCallEvent extends Header {
         sb.append(", connectionDeviceIDType=").append(connectionDeviceIDType);
         sb.append(", connectionCallID=").append(connectionCallID);
         sb.append(", calledPartyDisposition=").append(calledPartyDisposition);
+        sb.append(", floatingFields=").append(floatingFields);
         sb.append('}');
         return sb.toString();
     }

@@ -75,6 +75,7 @@ public class FloatingField {
             }
             default: {  //String
                 try {
+                    data = data + '\u0000';
                     fieldLength = data.getBytes("US-ASCII").length;
                     if (fieldLength > Fields.getField(tag).getMaxLength())
                         throw new CTIFieldException("Field " + Fields.getField(tag).name() + " has length more than (bytes) " + Fields.getField(tag).getMaxLength());
@@ -119,6 +120,7 @@ public class FloatingField {
 
     public static int calculateFloatingPart(List<FloatingField> floatingFields) {
         int floatingPart = 0;
+        int offset = 1;
         for (FloatingField f : floatingFields) {
             switch (Fields.getField(f.getTag()).getDataType()) {
                 case Fields.DATA_TYPE_SHORT: {
@@ -131,7 +133,7 @@ public class FloatingField {
                 }
                 default: {  //String
                     try {
-                        f.setFieldLength(f.getData().getBytes("US-ASCII").length);
+                        f.setFieldLength(f.getData().getBytes("US-ASCII").length + offset);
                     } catch (UnsupportedEncodingException e) {
                         //
                     }
